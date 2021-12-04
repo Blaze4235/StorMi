@@ -181,5 +181,48 @@ namespace AuthApp.Controllers
             await _signInManager.SignOutAsync();
             return Json("Success");
         }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [Route("/delete")]
+        public async Task<ActionResult> DeleteConfirmed()
+        {
+            ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return Json("Success");
+                }
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [Route("/edit")]
+        public async Task<ActionResult> Edit(RegisterModel model)
+        {
+            ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            if (user != null)
+            {
+                user.Email = model.Email;
+                user.UserName = model.Name;
+                IdentityResult result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return Json("Success");
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
