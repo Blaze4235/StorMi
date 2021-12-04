@@ -386,3 +386,26 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+server/.vs/StorMi/config/applicationhost.config
+server/.vs/StorMi/v16/.suo
+server/StorMi/bin/Debug/net5.0/ref/StorMi.dll
+server/StorMi/bin/Debug/net5.0/StorMi.deps.json
+server/StorMi/bin/Debug/net5.0/StorMi.dll
+server/StorMi/bin/Debug/net5.0/StorMi.exe
+server/StorMi/bin/Debug/net5.0/StorMi.pdb
+server/StorMi/bin/Debug/net5.0/StorMi.runtimeconfig.dev.json
+server/StorMi/Controllers/AccountController.cs
+server/StorMi/obj/Debug/net5.0/apphost.exe
+server/StorMi/obj/Debug/net5.0/ref/StorMi.dll
+server/StorMi/obj/Debug/net5.0/StorMi.assets.cache
+server/StorMi/obj/Debug/net5.0/StorMi.csproj.CoreCompileInputs.cache
+server/StorMi/obj/Debug/net5.0/StorMi.csproj.FileListAbsolute.txt
+server/StorMi/obj/Debug/net5.0/StorMi.dll
+server/StorMi/obj/Debug/net5.0/StorMi.GeneratedMSBuildEditorConfig.editorconfig
+server/StorMi/obj/Debug/net5.0/StorMi.genruntimeconfig.cache
+server/StorMi/obj/Debug/net5.0/StorMi.MvcApplicationPartsAssemblyInfo.cs
+server/StorMi/obj/Debug/net5.0/StorMi.pdb
+server/StorMi/obj/project.assets.json
+server/StorMi/obj/project.nuget.cache
+server/StorMi/obj/StorMi.csproj.nuget.dgspec.json
+server/StorMi/obj/StorMi.csproj.nuget.g.props
