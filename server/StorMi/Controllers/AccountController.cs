@@ -10,6 +10,7 @@ using StoMi.ViewModels;
 using StorMi.DalModels;
 using StorMi.EF;
 using StorMi.DalModels;
+using StorMi.Models;
 using StorMi.ViewModels;
 
 namespace AuthApp.Controllers
@@ -35,7 +36,7 @@ namespace AuthApp.Controllers
         [Route("/users")]
         public async Task<IActionResult> GetAll()
         {
-            return Json(await _db.UserProfiles.ToListAsync());
+            return Json(await _db.Users.ToListAsync());
         }
 
         //[HttpGet]
@@ -104,6 +105,81 @@ namespace AuthApp.Controllers
                 }
             }
             return BadRequest();
+        }
+
+        [HttpPost]
+        [Route("/delete")]
+        public async Task<ActionResult> DeleteConfirmed()
+        {
+            ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return Json("Success");
+                }
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [Route("/edit")]
+        public async Task<ActionResult> Edit(RegisterModel model)
+        {
+            ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            if (user != null)
+            {
+                user.Email = model.Email;
+                user.UserName = model.Name;
+                IdentityResult result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return Json("Success");
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        // POST: /Account/ResetPassword
+        [HttpPost]
+        [Route("/reset")]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPassword(ResetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var user = await _userManager.FindByNameAsync(model.Email);
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                return BadRequest();
+            }
+            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+
+            return StatusCode(500);
+        }
+
+        [HttpPost]
+        [Route("/logout")]
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return Json("Success");
         }
     }
 }
