@@ -11,6 +11,7 @@ using StorMi.DalModels;
 using StorMi.EF;
 using StorMi.DalModels;
 using StorMi.ViewModels;
+using Microsoft.Owin.Security;
 
 namespace AuthApp.Controllers
 {
@@ -108,7 +109,7 @@ namespace AuthApp.Controllers
 
         [HttpPost]
         [Route("/delete")]
-        public async Task<ActionResult> DeleteConfirmed()
+        public async Task<ActionResult> Delete()
         {
             ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
             if (user != null)
@@ -124,7 +125,7 @@ namespace AuthApp.Controllers
 
         [HttpPost]
         [Route("/edit")]
-        public async Task<ActionResult> Edit(RegisterModel model)
+        public async Task<ActionResult> Edit(EditUserModel model)
         {
             ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
             if (user != null)
