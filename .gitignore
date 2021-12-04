@@ -409,3 +409,4 @@ server/StorMi/obj/project.assets.json
 server/StorMi/obj/project.nuget.cache
 server/StorMi/obj/StorMi.csproj.nuget.dgspec.json
 server/StorMi/obj/StorMi.csproj.nuget.g.props
+server/StorMi/.config/dotnet-tools.json

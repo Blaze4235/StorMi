@@ -12,7 +12,6 @@ using StorMi.EF;
 using StorMi.DalModels;
 using StorMi.Models;
 using StorMi.ViewModels;
-using Microsoft.Owin.Security;
 
 namespace AuthApp.Controllers
 {
@@ -108,47 +107,6 @@ namespace AuthApp.Controllers
             return BadRequest();
         }
 
-        [HttpPost]
-        [Route("/delete")]
-        public async Task<ActionResult> Delete()
-        {
-            ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
-            if (user != null)
-            {
-                IdentityResult result = await _userManager.DeleteAsync(user);
-                if (result.Succeeded)
-                {
-                    return Json("Success");
-                }
-            }
-            return BadRequest();
-        }
-
-        [HttpPost]
-        [Route("/edit")]
-        public async Task<ActionResult> Edit(EditUserModel model)
-        {
-            ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
-            if (user != null)
-            {
-                user.Email = model.Email;
-                user.UserName = model.Name;
-                IdentityResult result = await _userManager.UpdateAsync(user);
-                if (result.Succeeded)
-                {
-                    return Json("Success");
-                }
-                else
-                {
-                    return BadRequest();
-                }
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
-
         // POST: /Account/ResetPassword
         [HttpPost]
         [Route("/reset")]
@@ -182,12 +140,10 @@ namespace AuthApp.Controllers
             await _signInManager.SignOutAsync();
             return Json("Success");
         }
-            return BadRequest();
-        }
 
         [HttpPost]
         [Route("/delete")]
-        public async Task<ActionResult> DeleteConfirmed()
+        public async Task<ActionResult> Delete()
         {
             ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
             if (user != null)
@@ -203,7 +159,7 @@ namespace AuthApp.Controllers
 
         [HttpPost]
         [Route("/edit")]
-        public async Task<ActionResult> Edit(RegisterModel model)
+        public async Task<ActionResult> Edit(EditUserModel model)
         {
             ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
             if (user != null)
