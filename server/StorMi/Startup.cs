@@ -32,7 +32,8 @@ namespace StorMi
             {
                 builder.AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader();
+                    .AllowAnyHeader()
+                    .AllowCredentials();
             })); // добавляем сервисы CORS
 
             string t = Configuration.GetConnectionString("DefaultConnection");
