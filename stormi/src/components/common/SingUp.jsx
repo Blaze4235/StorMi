@@ -14,6 +14,33 @@ export class SingUp extends Component{
         this.props = props;
     }
 
+    signUp(){
+        let data = {
+            'Name': document.querySelector('#Username').value,
+            'Email': document.querySelector('#UserEmail').value,
+            //Name: document.querySelector('#UserEmail').value,
+            'Password': document.querySelector('#Password').value,
+            'ConfirmPassword': document.querySelector('#RepPassword').value,
+        };
+
+        fetch('https://localhost:44344/register', {
+            method: 'POST',
+            //mode: 'no-cors', // no-cors, *cors, same-origin
+            // cache: 'no-cache', 
+            // credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(resp => {
+            console.log(resp);//JSON.parse()
+            console.log(data);
+        });
+    }
+    //12345Qq_
     render(){
         return(
             <div className="ticket ticket--sign-up">
@@ -23,12 +50,13 @@ export class SingUp extends Component{
                 </h1>
                 <div className="ticket__form">
                     <div className="form-fields">
-                      <FormTextField inpId="UserEmail" inpW="100" labelText="Email" labelPos="block"></FormTextField>
-                      <FormTextField inpId="PhoneNumber" inpW="100" labelText="Phone number" labelPos="block"></FormTextField>
-                      <FormTextField inpId="Username" inpW="100" labelText="Username" labelPos="block"></FormTextField>
-                      <FormTextField inpId="Password" inpW="100" labelText="Password" labelPos="block"></FormTextField>
+                      <FormTextField inpId="UserEmail" inpW="100" labelText="Email:" labelPos="block"></FormTextField>
+                      <FormTextField inpId="PhoneNumber" inpW="100" labelText="Phone number:" labelPos="block"></FormTextField>
+                      <FormTextField inpId="Username" inpW="100" labelText="Username:" labelPos="block"></FormTextField>
+                      <FormTextField inpId="Password" inpW="100" labelText="Password:" labelPos="block"></FormTextField>
+                      <FormTextField inpId="RepPassword" inpW="100" labelText="Repeat password:" labelPos="block"></FormTextField>
                     </div>
-                    <ButtonCustom text="SIGN IN" type="primary"></ButtonCustom>
+                    <ButtonCustom text="SIGN UP" type="primary" click={this.signUp}></ButtonCustom>
                     <div className="ticket__form--sub ticket__form--sub-end signIn-sub--end">
                         <span className="signIn-sub-spanP">
                             Have an account?

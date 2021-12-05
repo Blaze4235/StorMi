@@ -10,15 +10,15 @@ import {SingUp} from './components/common/SingUp';
 import {UserCabinet} from './components/user/UserCabinet';
 
 function App() {
+  //<Route path="/" element={/*window.history.pushState(null,'','/sing-in')*/>}/>
   return (
     <div className="App">
-        <Routes>
-          <Route path="/sing-in" element={<SingIn/>}/>
-          <Route path="/sing-up" element={<SingUp/>}/>
-          <Route path="/cabinet" element={<UserCabinet/>}/>
-        </Routes>
+      <Routes>
+        <Route path="/sign-in" element={<SingIn/>}/>
+        <Route path="/sign-up" element={<SingUp/>}/>
+        <Route path="/cabinet" element={<UserCabinet/>}/>
+      </Routes>
     </div>
   );
 }
-
 export default App;

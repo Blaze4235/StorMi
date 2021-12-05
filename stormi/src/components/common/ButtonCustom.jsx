@@ -6,11 +6,15 @@ export class ButtonCustom extends Component{
     constructor(props) {
         super(props);
         this.props = props;
-    }
 
+        this.click = this.click.bind(this);
+    }
+    click(){
+        typeof this.props.click === 'function' ? this.props.click() : console.log('No handlers.');
+    }
     render(){
         return(
-            <button className={"btn btn-" + this.props.type}>{this.props.text}</button>
+            <button className={"btn btn-" + this.props.type} onClick={this.click}>{this.props.text}</button>
         )
     }
 }
