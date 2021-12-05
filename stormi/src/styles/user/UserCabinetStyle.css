@@ -1,0 +1,19 @@
+.ticket--cabinet{
+    width: 80%;
+    max-width: 720px;
+}
+
+.cabinet-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cabinet-info__block{
+    text-align: start;
+}
+
+.cabinet-info__btn-group{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
