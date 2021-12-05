@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Identity;
 using StorMi.EF;
 using Microsoft.EntityFrameworkCore;
 using StorMi.DalModels;
-using StorMi.DalModels;
 
 namespace StorMi
 {
@@ -28,7 +27,15 @@ namespace StorMi
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
-            
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            })); // добавляем сервисы CORS
+
             string t = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<StormiContext>(options => 
                 options.UseSqlServer(t));
@@ -56,6 +63,7 @@ namespace StorMi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("MyPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();

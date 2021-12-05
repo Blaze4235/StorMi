@@ -86,6 +86,9 @@ namespace AuthApp.Controllers
                     return BadRequest();
                 }
             }
+
+            var headers = HttpContext.Request.Headers;
+            
             return StatusCode(500);
         }
 
