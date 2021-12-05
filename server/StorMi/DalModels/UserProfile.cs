@@ -11,8 +11,6 @@ namespace StorMi.DalModels
 
         public string Name { get; set; }
 
-        public string Surname { get; set; }
-
         public string PlatformType { get; set; }
 
         public short TimeZone { get; set; }

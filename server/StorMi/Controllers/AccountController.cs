@@ -57,6 +57,17 @@ namespace AuthApp.Controllers
                     UserName = model.Email
                 };
 
+                var userIdentity = await _userManager.FindByEmailAsync(model.Email);
+
+                UserProfile userProfile = new UserProfile()
+                {
+                    UserId = userIdentity.Id,
+                    Name = model.Name
+                };
+
+                _db.UserProfiles.Add(userProfile);
+                await _db.SaveChangesAsync();
+
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
