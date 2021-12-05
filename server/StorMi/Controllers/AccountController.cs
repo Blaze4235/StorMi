@@ -47,7 +47,7 @@ namespace AuthApp.Controllers
 
         [HttpPost]
         [Route("/register")]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -57,24 +57,25 @@ namespace AuthApp.Controllers
                     UserName = model.Email
                 };
 
-                var userIdentity = await _userManager.FindByEmailAsync(model.Email);
-
-                UserProfile userProfile = new UserProfile()
-                {
-                    UserId = userIdentity.Id,
-                    Name = model.Name
-                };
-
-                _db.UserProfiles.Add(userProfile);
-                await _db.SaveChangesAsync();
 
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var userIdentity = await _userManager.FindByEmailAsync(model.Email);
+
+                    UserProfile userProfile = new UserProfile()
+                    {
+                        UserId = userIdentity.Id,
+                        Name = model.Name
+                    };
+
+                    _db.UserProfiles.Add(userProfile);
+                    await _db.SaveChangesAsync();
+
                     // установка куки
                     await _signInManager.SignInAsync(user, false);
-                    return Json("Success");
+                    return Ok();
                 }
                 else
                 {
@@ -87,15 +88,13 @@ namespace AuthApp.Controllers
                 }
             }
 
-            var headers = HttpContext.Request.Headers;
-            
             return StatusCode(500);
         }
 
         [HttpPost]
         [Route("/login")]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +109,9 @@ namespace AuthApp.Controllers
                     }
                     else
                     {
-                        return Json("Success");
+                        var user = await _userManager.FindByEmailAsync(model.Email);
+                        user.UserName = (await _db.UserProfiles.FindAsync(user.Id)).Name;
+                        return Json(user);
                     }
                 }
                 else
@@ -126,7 +127,7 @@ namespace AuthApp.Controllers
         [Route("/reset")]
         //[AllowAnonymous]
         //[ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(ResetPasswordModel model)
+        public async Task<ActionResult> ResetPassword([FromBody] ResetPasswordModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -173,7 +174,7 @@ namespace AuthApp.Controllers
 
         [HttpPost]
         [Route("/edit")]
-        public async Task<ActionResult> Edit(EditUserModel model)
+        public async Task<ActionResult> Edit([FromBody] EditUserModel model)
         {
             ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
             if (user != null)
@@ -181,9 +182,12 @@ namespace AuthApp.Controllers
                 user.Email = model.Email;
                 user.UserName = model.Name;
                 IdentityResult result = await _userManager.UpdateAsync(user);
+                await _db.SaveChangesAsync();
                 if (result.Succeeded)
                 {
-                    return Json("Success");
+                    var userRes = await _userManager.FindByEmailAsync(model.Email);
+                    user.UserName = (await _db.UserProfiles.FindAsync(user.Id)).Name;
+                    return Json(userRes);
                 }
                 else
                 {
