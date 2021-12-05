@@ -28,7 +28,9 @@ namespace StorMi
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
-            
+
+            services.AddCors();
+
             string t = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<StormiContext>(options => 
                 options.UseSqlServer(t));
@@ -56,6 +58,7 @@ namespace StorMi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseAuthentication();
             app.UseAuthorization();
