@@ -9,8 +9,11 @@ import {SingIn} from './components/common/SingIn';
 import {SingUp} from './components/common/SingUp';
 import {UserCabinet} from './components/user/UserCabinet';
 
+import { Navigate } from 'react-router-dom';
+
 function App() {
   //<Route path="/" element={/*window.history.pushState(null,'','/sing-in')*/>}/>
+  //<Navigate to="/sign-in"/>
   return (
     <div className="App">
       <Routes>

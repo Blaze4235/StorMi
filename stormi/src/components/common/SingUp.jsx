@@ -4,6 +4,7 @@ import {FormTextField} from './FormTextField';
 import {ButtonCustom} from './ButtonCustom';
 
 import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 //import '../../styles/common/SingInStyle.css';
 import '../../styles/common/SingUpStyle.css';
@@ -12,9 +13,14 @@ export class SingUp extends Component{
     constructor(props) {
         super(props);
         this.props = props;
+        this.state = {
+            redirect: false
+        }
+
+        //this.singUp = this.singUp.bind(this);
     }
 
-    signUp(){
+    signUp = ()=>{
         let data = {
             'Name': document.querySelector('#Username').value,
             'Email': document.querySelector('#UserEmail').value,
@@ -25,23 +31,25 @@ export class SingUp extends Component{
 
         fetch('https://localhost:44344/register', {
             method: 'POST',
-            //mode: 'no-cors', // no-cors, *cors, same-origin
-            // cache: 'no-cache', 
-            // credentials: 'same-origin',
             headers: {
               'Content-Type': 'application/json'
-              // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify(data)
         })
-        .then(response => response.json())
+        //.then(response => response.json())
         .then(resp => {
-            console.log(resp);//JSON.parse()
-            console.log(data);
+            console.log(resp);
+            if(resp.status === 200){
+                this.setState({ redirect: true });
+            }
         });
     }
     //12345Qq_
     render(){
+        const { redirect } = this.state;
+        if (redirect) {
+            return <Navigate to="/sign-in"/>;
+        }
         return(
             <div className="ticket ticket--sign-up">
                 <h1 className="logo-name">
@@ -61,7 +69,7 @@ export class SingUp extends Component{
                         <span className="signIn-sub-spanP">
                             Have an account?
                         </span>
-                        <Link to="/sing-in">Log in</Link>
+                        <Link to="/sign-in">Log in</Link>
                     </div>
                 </div>
             </div>

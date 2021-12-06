@@ -9,26 +9,29 @@ export class UserCabinet extends Component{
         super(props);
         this.props = props;
     }
-
+    componentDidMount(){
+        document.querySelector('#CabName').textContent = window.localStorage.getItem('Uname');
+        document.querySelector('#CabEmail').textContent = window.localStorage.getItem('Umail');
+    }
     render(){
         return(
             <div className="ticket ticket--cabinet">
                 <div className="cabinet-info">
                     <div className="cabinet-info__block">
                         <div>
-                            <h2 id="userName" className="cabinet-info__title user-name">UserName</h2>
-                            <p className="cabinet-info__text">UserNameExample</p>
+                            <h2 id="userName" className="cabinet-info__title user-name">User name</h2>
+                            <p id="CabName" className="cabinet-info__text">UserNameExample</p>
                         </div>
                         <div>
                             <h2 id="userEmail" className="cabinet-info__title user-email">Email</h2>
-                            <p className="cabinet-info__text">UserNameExample@pidory.gdeBack?</p>
+                            <p id="CabEmail" className="cabinet-info__text">UserNameExample@pidory.gdeBack?</p>
                         </div>
                         <div>
                             <h2 id="userName" className="cabinet-info__title user-name">Phone number</h2>
                             <p className="cabinet-info__text">+1234567890</p>
                         </div>
                     </div>
-                    <div>
+                    <div className="cabinet__log-out">
                         <ButtonCustom text="Log out" type="primary"></ButtonCustom>
                     </div>
                 </div>

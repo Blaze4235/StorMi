@@ -17,3 +17,11 @@
     display: flex;
     justify-content: space-between;
 }
+
+.cabinet__log-out{
+    margin-top: 20px;
+}
+
+.cabinet-info__text{
+    color: #6c757d ;
+}

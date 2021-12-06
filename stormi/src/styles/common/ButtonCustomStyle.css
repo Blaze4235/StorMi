@@ -1,8 +1,10 @@
 .btn {
-  padding: 10px 50px 7px;
+  padding: 15px 50px 12px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 13px;
   font-size: 16px;
+
+  animation: fadeIn 1.5s linear 0s;
 }
 
 .btn-primary {
@@ -32,4 +34,20 @@
 .btn-secondary:active{
     background-color: rgb(180, 180, 180);
     outline: 2px solid gray;
+}
+
+@media (min-width: 720px) { 
+  .btn {
+    width: 230px;
+  }
+}
+
+
+@keyframes fadeIn { 
+  from { 
+    opacity: 0; 
+  } 
+  to { 
+    opacity: 1; 
+  }  
 }
