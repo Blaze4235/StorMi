@@ -8,6 +8,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import {SingIn} from './components/common/SingIn';
 import {SingUp} from './components/common/SingUp';
 import {UserCabinet} from './components/user/UserCabinet';
+import {AdminCabinet} from './components/admin/AdminCabinet';
 
 import { Navigate } from 'react-router-dom';
 
@@ -20,6 +21,8 @@ function App() {
         <Route path="/sign-in" element={<SingIn/>}/>
         <Route path="/sign-up" element={<SingUp/>}/>
         <Route path="/cabinet" element={<UserCabinet/>}/>
+        <Route path="/cabinetAdmin" element={<AdminCabinet/>}/>
+
       </Routes>
     </div>
   );
