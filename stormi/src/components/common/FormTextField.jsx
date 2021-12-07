@@ -14,7 +14,7 @@ export class FormTextField extends Component{
                 <label className={"form-input-label form-input-label-" + this.props.labelPos} htmlFor={this.props.inpId}>
                     {this.props.labelText}
                 </label>
-                <input className="form-input" type="text" id={this.props.inpId} style={{width: this.props.inpW + '%'}}/>
+                <input className="form-input" type={this.props.type} id={this.props.inpId} style={{width: this.props.inpW + '%'}}/>
             </div>
         )
     }

@@ -24,7 +24,7 @@ export class SingUp extends Component{
         let data = {
             'Name': document.querySelector('#Username').value,
             'Email': document.querySelector('#UserEmail').value,
-            //Name: document.querySelector('#UserEmail').value,
+            'phoneNumber': document.querySelector('#PhoneNumber').value,
             'Password': document.querySelector('#Password').value,
             'ConfirmPassword': document.querySelector('#RepPassword').value,
         };
@@ -58,11 +58,11 @@ export class SingUp extends Component{
                 </h1>
                 <div className="ticket__form">
                     <div className="form-fields">
-                      <FormTextField inpId="UserEmail" inpW="100" labelText="Email:" labelPos="block"></FormTextField>
-                      <FormTextField inpId="PhoneNumber" inpW="100" labelText="Phone number:" labelPos="block"></FormTextField>
-                      <FormTextField inpId="Username" inpW="100" labelText="Username:" labelPos="block"></FormTextField>
-                      <FormTextField inpId="Password" inpW="100" labelText="Password:" labelPos="block"></FormTextField>
-                      <FormTextField inpId="RepPassword" inpW="100" labelText="Repeat password:" labelPos="block"></FormTextField>
+                      <FormTextField inpId="UserEmail" inpW="100" type="email" labelText="Email:" labelPos="block"></FormTextField>
+                      <FormTextField inpId="PhoneNumber" inpW="100" type="text" labelText="Phone number:" labelPos="block"></FormTextField>
+                      <FormTextField inpId="Username" inpW="100" type="text" labelText="Username:" labelPos="block"></FormTextField>
+                      <FormTextField inpId="Password" inpW="100" type="password" labelText="Password:" labelPos="block"></FormTextField>
+                      <FormTextField inpId="RepPassword" inpW="100" type="password" labelText="Confirm password:" labelPos="block"></FormTextField>
                     </div>
                     <ButtonCustom text="SIGN UP" type="primary" click={this.signUp}></ButtonCustom>
                     <div className="ticket__form--sub ticket__form--sub-end signIn-sub--end">

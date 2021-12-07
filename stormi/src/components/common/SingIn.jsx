@@ -41,6 +41,7 @@ export class SingIn extends Component{
                     console.log(user);
                     window.localStorage.setItem('Uname', user.userName);
                     window.localStorage.setItem('Umail', user.email);
+                    window.localStorage.setItem('Uphone', user.phoneNumber);
                     this.setState({ redirect: true });
                 });     
             }
@@ -59,8 +60,8 @@ export class SingIn extends Component{
                     <span className="logo-name--e">Mi</span>
                 </h1>
                 <div className="ticket__form">
-                    <FormTextField inpId="UserEmail" inpW="100" labelText="Email:" labelPos="block"></FormTextField>
-                    <FormTextField inpId="Password" inpW="100" labelText="Password:" labelPos="block"></FormTextField>
+                    <FormTextField inpId="UserEmail" inpW="100" type="email" labelText="Email:" labelPos="block"></FormTextField>
+                    <FormTextField inpId="Password" inpW="100" type="password" labelText="Password:" labelPos="block"></FormTextField>
                     <div className="ticket__form--sub signIn-sub">
                         <span>
                             <input type="checkbox" name="RememberMe" id="RememberMe" />

@@ -12,6 +12,7 @@ export class UserCabinet extends Component{
     componentDidMount(){
         document.querySelector('#CabName').textContent = window.localStorage.getItem('Uname');
         document.querySelector('#CabEmail').textContent = window.localStorage.getItem('Umail');
+        document.querySelector('#CabPhone').textContent = window.localStorage.getItem('Uphone');
     }
     render(){
         return(
@@ -28,7 +29,7 @@ export class UserCabinet extends Component{
                         </div>
                         <div>
                             <h2 id="userName" className="cabinet-info__title user-name">Phone number</h2>
-                            <p className="cabinet-info__text">+1234567890</p>
+                            <p id="CabPhone" className="cabinet-info__text">+1234567890</p>
                         </div>
                     </div>
                     <div className="cabinet__log-out">
