@@ -54,7 +54,8 @@ namespace AuthApp.Controllers
                 ApplicationUser user = new ApplicationUser()
                 {
                     Email = model.Email,
-                    UserName = model.Email
+                    UserName = model.Email,
+                    PhoneNumber = model.PhoneNumber,
                 };
 
 
