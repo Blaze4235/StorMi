@@ -13,8 +13,11 @@ import {AdminCabinet} from './components/admin/AdminCabinet';
 import { Navigate } from 'react-router-dom';
 
 function App() {
-  //<Route path="/" element={/*window.history.pushState(null,'','/sing-in')*/>}/>
-  //<Navigate to="/sign-in"/>
+
+  if(window.location.pathname === '/'){
+    window.location.replace("/sign-in");
+  }
+  
   return (
     <div className="App">
       <Routes>
@@ -22,7 +25,6 @@ function App() {
         <Route path="/sign-up" element={<SingUp/>}/>
         <Route path="/cabinet" element={<UserCabinet/>}/>
         <Route path="/cabinetAdmin" element={<AdminCabinet/>}/>
-
       </Routes>
     </div>
   );

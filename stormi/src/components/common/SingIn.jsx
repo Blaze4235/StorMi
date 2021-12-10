@@ -72,7 +72,7 @@ export class SingIn extends Component{
                     <ButtonCustom text="SIGN IN" click={this.signIn} type="primary"></ButtonCustom>
                     <div className="ticket__form--sub ticket__form--sub-end signIn-sub--end">
                         <span className="signIn-sub-spanP">
-                            Dont't have an account?
+                            Don't have an account?
                         </span>
                         <Link to="/sign-up">Sign Up</Link>
                     </div>
