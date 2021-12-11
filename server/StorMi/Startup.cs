@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,9 @@ using Microsoft.AspNetCore.Identity;
 using StorMi.EF;
 using Microsoft.EntityFrameworkCore;
 using StorMi.DalModels;
+using StorMi.Interfaces;
+using StorMi.Models;
+using StorMi.Services;
 
 namespace StorMi
 {
@@ -42,6 +46,10 @@ namespace StorMi
             
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<StormiContext>();
+
+            // Dependency injection
+            services.AddScoped<IApiDataHandler, ApiDataHandler1>();
+            services.AddScoped<IApiInvoker, ApiInvoker>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
