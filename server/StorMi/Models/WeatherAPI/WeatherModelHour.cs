@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace StorMi.Models.WeatherAPI
 {
@@ -7,6 +8,8 @@ namespace StorMi.Models.WeatherAPI
         public string City { get; set; }
 
         public string Country { get; set; }
+
+        public DateTime Time { get; set; }
 
         public float Humidity { get; set; }
 
@@ -28,6 +31,6 @@ namespace StorMi.Models.WeatherAPI
 
         public string WindGustInKm { get; set; }
 
-        public string OverallCondition { get; set; }
+        public string Condition { get; set; }
     }
 }

@@ -99,5 +99,68 @@ namespace StorMi.Controllers
 
             return Json(model);
         }
+
+        [HttpGet]
+        [Route("/weather/day/hourly")]
+        public async Task<IActionResult> DayHourlyWeatherForecast(DateTime requestedDay)
+        {
+            // First API: https://api.weatherapi.com
+            dynamic res = null;
+            List<WeatherModelHour> model = new List<WeatherModelHour>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://api.weatherapi.com/v1/forecast.json?key=2f3b18240aca47f9a5e131759211112&q=Kharkiv&days=10&aqi=no&alerts=no"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    //dynamic data = System.Web.Helpers.Json.Decode(apiResponse);
+                    res = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(apiResponse);
+                    var location = res["location"];
+                    var forecast = res["forecast"];
+                    var forecastDay = forecast["forecastday"];
+                    for (int i = 0; i < forecastDay.Count; i++)
+                    {
+
+                        var currentDay = forecastDay[i];
+                        var date = currentDay["date"];
+                        //var weatherParams = hour["day"].avghumidity;
+
+                        string searchDay = requestedDay.ToString("yyyy-MM-dd");
+
+                        if (searchDay == date.Value)
+                        {
+
+                            for (int j = 0; j < currentDay["hour"].Count; j++)
+                            {
+                                var node = new WeatherModelHour();
+                                var hour = currentDay["hour"][j];
+                                node.City = location["name"];
+                                node.Country = location["country"];
+                                node.Time = Convert.ToDateTime(hour["time"]);
+                                node.Humidity = hour["humidity"];
+                                node.Temp = hour["temp_c"];
+                                node.FeelsLikeTemp = hour["feelslike_c"];
+                                node.ChanceOfRain = hour["chance_of_rain"];
+                                node.ChanceOfSnow = hour["chance_of_snow"];
+                                node.WindSpeed = hour["wind_kph"];
+                                node.WindDegree = hour["wind_degree"];
+                                node.WindDirection = hour["wind_dir"];
+                                node.AvgVisibilityInKm = hour["vis_km"];
+                                node.WindGustInKm = hour["vis_km"];
+                                node.Condition = hour["condition"]?["text"];
+
+                                model.Add(node);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (model.Count == 0)
+            {
+                return BadRequest();
+            }
+
+            return Json(model);
+        }
     }
 }
