@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:stor_mi/screens/RegistrationPage/reg_page.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -115,12 +116,17 @@ class AuthPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           CupertinoButton(
-                              child: Text("I dont`t have account",
-                              style: TextStyle(fontSize: 14),),
-                              onPressed: () {}),
+                              child: Text(
+                                "I dont`t have account",
+                                style: TextStyle(fontSize: 14),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => RegPage()));
+                              }),
                           CupertinoButton(
                               child: Text("Forgot Password?",
-                              style: TextStyle(fontSize: 14)),
+                                  style: TextStyle(fontSize: 14)),
                               onPressed: () {}),
                         ],
                       )
