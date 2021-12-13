@@ -20,11 +20,19 @@ class AuthPage extends StatelessWidget {
               body: Stack(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height,
-                      child: Image.asset("res/images/login_back.jpg", fit: BoxFit.cover,)),
-                  Center(child: Text("StorMi", style: TextStyle(
-                    fontSize: 32,
-                  ),),)
+                      height: MediaQuery.of(context).size.height,
+                      child: Image.asset(
+                        "res/images/login_back.jpg",
+                        fit: BoxFit.cover,
+                      )),
+                  Center(
+                    child: Text(
+                      "StorMi",
+                      style: TextStyle(
+                        fontSize: 32,
+                      ),
+                    ),
+                  )
                 ],
               ),
               panelBuilder: (sc) => _panel(sc, context),
@@ -36,7 +44,6 @@ class AuthPage extends StatelessWidget {
         ),
       ),
     );
-
   }
 
   Widget _panel(ScrollController sc, BuildContext context) {
@@ -69,7 +76,7 @@ class AuthPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.max,
-                children:  <Widget>[
+                children: <Widget>[
                   Column(
                     children: [
                       Text(
@@ -86,11 +93,10 @@ class AuthPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width - 32,
                         child: TextField(
                             decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                              hintText: "Email",
-                              label: Text('Email'),
-                            )
-                        ),
+                          border: OutlineInputBorder(),
+                          hintText: "Email",
+                          label: Text('Email'),
+                        )),
                       ),
                       SizedBox(
                         height: 16,
@@ -99,16 +105,23 @@ class AuthPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width - 32,
                         child: TextField(
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: "Password",
-                              label: Text('Password'),
-                            )
-                        ),
+                          border: OutlineInputBorder(),
+                          hintText: "Password",
+                          label: Text('Password'),
+                        )),
                       ),
                       Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          CupertinoButton(child: Text("I dont`t have account"), onPressed: (){}),
-                          CupertinoButton(child: Text("Forgot Password?"), onPressed: (){}),
+                          CupertinoButton(
+                              child: Text("I dont`t have account",
+                              style: TextStyle(fontSize: 14),),
+                              onPressed: () {}),
+                          CupertinoButton(
+                              child: Text("Forgot Password?",
+                              style: TextStyle(fontSize: 14)),
+                              onPressed: () {}),
                         ],
                       )
                     ],
@@ -118,11 +131,15 @@ class AuthPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     child: RaisedButton(
                       color: Colors.green,
-                        onPressed: () {},
-                    child: Text('Login', style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),),),
+                      onPressed: () {},
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
