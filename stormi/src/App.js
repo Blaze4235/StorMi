@@ -9,6 +9,7 @@ import {SingIn} from './components/common/SingIn';
 import {SingUp} from './components/common/SingUp';
 import {UserCabinet} from './components/user/UserCabinet';
 import {AdminCabinet} from './components/admin/AdminCabinet';
+import { CreateAccAdmin } from './components/admin/CreateAccAdmin';
 
 import { Navigate } from 'react-router-dom';
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/sign-up" element={<SingUp/>}/>
         <Route path="/cabinet" element={<UserCabinet/>}/>
         <Route path="/cabinetAdmin" element={<AdminCabinet/>}/>
+        <Route path="/createAccAdmin" element={<CreateAccAdmin/>}/>
       </Routes>
     </div>
   );
