@@ -1,34 +1,32 @@
 import React from 'react';
 import { Component } from 'react';
+// import { Link } from 'react-router-dom'
 
-import {ButtonCustom} from '../common/ButtonCustom';
-import '../../styles/user/UserCabinetStyle.css';
+import '../../styles/admin/AdminCabinetStyle.css';
 
 export class AdminCabinet extends Component{
     constructor(props) {
         super(props);
         this.props = props;
     }
-    // componentDidMount(){
-    //     document.querySelector('#CabName').textContent = window.localStorage.getItem('Uname');
-    //     document.querySelector('#CabEmail').textContent = window.localStorage.getItem('Umail');
-    //     document.querySelector('#CabPhone').textContent = window.localStorage.getItem('Uphone');
-    // }
     render(){
         return(
             <div className="ticket ticket--cabinet">
                 <div>
-                    <h2 id="userName" className="cabinet-info__title user-name">Menu</h2>
+                    <h2 id="userName" className="cabinet-info__title user-name">Menu
+                    <button className="btnAdminLogOut">Log out</button></h2>
                 </div>
                 <div className="cabinet-info">
                     <div className="cabinet-info__block">
                 </div>
                 <div className="cabinet-info__btn-group">
-                    <ButtonCustom text="Update users account" type="primary"></ButtonCustom>
-                    <ButtonCustom text="Delete users account" type="primary"></ButtonCustom>
-                    <ButtonCustom text="Create account to user" type="primary"></ButtonCustom>
-                    <ButtonCustom text="Check info about users accounts" type="primary"></ButtonCustom>
-                    <ButtonCustom text="Recover password to user" type="primary"></ButtonCustom>
+                    <button className="btnAdmin">Update users account</button>
+                    <button className="btnAdmin">Delete users account</button>
+                    <button className="btnAdmin">Create account to user</button>
+                    <button className="btnAdmin">Check info about users accounts</button>
+                    <button className="btnAdmin">Recover password to user</button>
+                    <button className="btnAdmin">Check recent users</button>
+                    <button className="btnAdmin">Choose weather source</button>
                 </div>
             </div>
             </div>
