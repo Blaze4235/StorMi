@@ -58,6 +58,7 @@ namespace StorMi
             // Dependency injection
             services.AddScoped<IApiDataHandler, ApiDataHandler1>();
             services.AddScoped<IApiInvoker, ApiInvoker>();
+            services.AddScoped<IGeoAPIHandler, GeoAPIHandler>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
