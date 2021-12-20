@@ -57,12 +57,10 @@ namespace AuthApp.Controllers
                     UserName = model.Email,
                     PhoneNumber = model.PhoneNumber,
                 };
-
-
-                // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "user");
                     var userIdentity = await _userManager.FindByEmailAsync(model.Email);
 
                     UserProfile userProfile = new UserProfile()
@@ -140,7 +138,8 @@ namespace AuthApp.Controllers
                 // Don't reveal that the user does not exist
                 return BadRequest();
             }
-            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+            string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var result = await _userManager.ResetPasswordAsync(user, resetToken, model.Password);
             if (result.Succeeded)
             {
                 return Ok();
@@ -153,8 +152,9 @@ namespace AuthApp.Controllers
         [Route("/logout")]
         public async Task<IActionResult> LogOut()
         {
+            var user = User.Identity;
             await _signInManager.SignOutAsync();
-            return Json("Success");
+            return Ok();
         }
 
         [HttpPost]

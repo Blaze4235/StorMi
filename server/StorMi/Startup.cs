@@ -1,4 +1,5 @@
 using System.Globalization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -29,8 +30,8 @@ namespace StorMi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -43,9 +44,16 @@ namespace StorMi
             string t = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<StormiContext>(options => 
                 options.UseSqlServer(t));
-            
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<StormiContext>();
+                .AddEntityFrameworkStores<StormiContext>()
+                .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider); ;
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/api/account/login");
+                });
 
             // Dependency injection
             services.AddScoped<IApiDataHandler, ApiDataHandler1>();
