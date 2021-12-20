@@ -16,15 +16,15 @@ namespace StorMi.Services
             _apiInvoker = apiInvoker;
         }
         
-        public async Task<IEnumerable<int>> GetCityCoordsByName(string cityName)
+        public async Task<IEnumerable<double>> GetCityCoordsByName(string cityName)
         {
             var res = await _apiInvoker.Invoke(_apiSource +
                                                $"q={cityName}&limit=1&appid=a0f92c05a3498558cf9952d561be2cf1");
-            List<int> coords = new List<int>();
+            List<double> coords = new List<double>();
 
             var city = res[0];
-            coords.Add(Convert.ToInt32(city["lon"]));
-            coords.Add(Convert.ToInt32(city["lat"]));
+            coords.Add(Convert.ToDouble(city["lon"]));
+            coords.Add(Convert.ToDouble(city["lat"]));
             
             return coords;
         }

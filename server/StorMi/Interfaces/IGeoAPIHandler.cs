@@ -5,6 +5,6 @@ namespace StorMi.Interfaces
 {
     public interface IGeoAPIHandler
     {
-        public Task<IEnumerable<int>> GetCityCoordsByName(string cityName);
+        public Task<IEnumerable<double>> GetCityCoordsByName(string cityName);
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using StorMi.Interfaces;
+using StorMi.Services;
 
 namespace StorMi.Controllers
 {
@@ -15,6 +16,7 @@ namespace StorMi.Controllers
     [ApiController]
     public class WeatherController : Controller
     {
+        //private readonly IApiDataHandler _apiDataHandler;
         private readonly IApiDataHandler _apiDataHandler;
 
         public WeatherController(IApiDataHandler apiDataHandler)
