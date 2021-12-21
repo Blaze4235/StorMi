@@ -1,5 +1,11 @@
-.adminChat-back{
-    width: 20px;
-    height: 20px;
-    background-color: greenyellow;
+.admChat-title {
+  margin-top: 0;
+}
+
+.ticket--adminChat {
+  width: 500px;
+}
+
+.adminChat-btn{
+    margin-top: 15px;
 }

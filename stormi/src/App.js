@@ -8,6 +8,9 @@ import { Routes, Route, Link } from 'react-router-dom';
 import {SingIn} from './components/common/SingIn';
 import {SingUp} from './components/common/SingUp';
 import {UserCabinet} from './components/user/UserCabinet';
+import {AdminChat} from './components/user/ConnectWithAdmin';
+import {CityList} from './components/user/CityList';
+
 import {AdminCabinet} from './components/admin/AdminCabinet';
 import { CreateAccAdmin } from './components/admin/CreateAccAdmin';
 
@@ -27,6 +30,8 @@ function App() {
         <Route path="/cabinet" element={<UserCabinet/>}/>
         <Route path="/cabinetAdmin" element={<AdminCabinet/>}/>
         <Route path="/createAccAdmin" element={<CreateAccAdmin/>}/>
+        <Route path="/connectWithAdmin" element={<AdminChat/>}/>
+        <Route path="/CityList" element={<CityList/>}/>
       </Routes>
     </div>
   );

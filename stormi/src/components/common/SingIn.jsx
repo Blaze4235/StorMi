@@ -23,7 +23,7 @@ export class SingIn extends Component{
             'email': document.querySelector('#UserEmail').value,
             'password': document.querySelector('#Password').value,
             'rememberMe': document.querySelector('#RememberMe').checked,
-            //'returnUrl': document.querySelector('#RepPassword').value,
+            'returnUrl': '',
         };
 
         fetch('https://localhost:44344/login', {

@@ -6,7 +6,7 @@ import {ButtonCustom} from '../common/ButtonCustom';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 
-import '../../styles/common/SingInStyle.css';
+import '../../styles/user/ConnectWithAdmin.css';
 
 export class AdminChat extends Component{
     constructor(props) {
@@ -18,16 +18,17 @@ export class AdminChat extends Component{
 
     }
     //12345Qq_
-    signIn = () => {
+    sendMes = () => {
 
     }
 
     render(){
         return(
-            <div>
-                <div className="adminChat-back"></div>
-                <div className="ticket ticket--adminChat">
-
+            <div className="ticket ticket--adminChat">
+                <h2 className="admChat-title">Admin Chat</h2>
+                <FormTextField inpId="MesToAdmin" inpW="100" type="text" labelText="Your problem:" labelPos="block"></FormTextField>
+                <div className="adminChat-btn">
+                    <ButtonCustom  text="Send Message" click={this.sendMes} type="primary"></ButtonCustom>
                 </div>
             </div>
         )
