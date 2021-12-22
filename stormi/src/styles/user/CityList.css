@@ -26,18 +26,26 @@
 }
 
 .carousel-btn--left{
-    background-repeat: no-repeat;
     background-image: url('../../assets/arrow.png');
+    background-repeat: no-repeat;
     background-size: contain;
 }
 
 .carousel-btn--right{
-    background-repeat: no-repeat;
-    background-image: url('../../assets/arrow.png');
-    background-size: contain;
     transform: rotate(180deg);
+    background-image: url('../../assets/arrow.png');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .city-list_btns{
     display: flex;
+}
+
+.weather-list{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }

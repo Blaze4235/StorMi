@@ -28,6 +28,7 @@ export class SingIn extends Component{
 
         fetch('https://localhost:44344/login', {
             method: 'POST',
+            credentials: 'same-origin',
             headers: {
               'Content-Type': 'application/json'
             },
@@ -35,6 +36,7 @@ export class SingIn extends Component{
         })
         //.then(response => response.json())
         .then(response => {
+            console.log(response.cookie)
             if(response.status === 200){
                 response.json()
                 .then(user => {
@@ -46,6 +48,19 @@ export class SingIn extends Component{
                 });     
             }
         });
+        /*fetch('https://localhost:44344/api/cities',{
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+        });*/
     }
 
     render(){
@@ -65,7 +80,7 @@ export class SingIn extends Component{
                     <div className="ticket__form--sub signIn-sub">
                         <span>
                             <input type="checkbox" name="RememberMe" id="RememberMe" />
-                            <label for="RememberMe">Remember Me</label>
+                            <label htmlFor="RememberMe">Remember Me</label>
                         </span>
                         <Link to="/recover-password">Forgot Login Details?</Link>
                     </div>

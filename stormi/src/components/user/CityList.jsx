@@ -6,6 +6,8 @@ import {ButtonCustom} from '../common/ButtonCustom';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 
+import snow from '../../assets/snow.png';
+
 import '../../styles/user/CityList.css';
 
 export class CityList extends Component{
@@ -13,13 +15,85 @@ export class CityList extends Component{
         super(props);
         this.props = props;
         this.state = {
-            back: false
+            back: false,
+            city: 'Dnipro',
+            listItems: '',
+            cities: ""
         }
-
+        this.listItems = "";
+        this.getCities();
     }
     //12345Qq_
     back = () => {
         this.setState({ back: true });
+    }
+
+    getWether = async ()=>{
+        let res = await fetch(`https://localhost:44344/weather/week?city=${this.state.city}`,{
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            })
+            .then((response) => {
+                return response.json();
+            });
+
+            console.log(res);
+            let lis = res.map((city, index) =>{
+                let srcIc = city.overallCondition === ""
+                    return <li key={index}>
+                        <div className="wether-icon">
+                            <img className="wether-ic" src={snow} alt="icon" />
+                        </div>
+                        <div className="wether-text">
+                            Avg temperature: <strong>{city.avgTemp}</strong>
+                        </div>
+                        <div className="wether-text">
+                            Chance of rain: <strong>{city.chanceOfRain}</strong>%
+                        </div>
+                        <div className="wether-text">
+                            Chance of snow: <strong>{city.chanceOfSnow}</strong>%
+                        </div>
+                        <div className="wether-text">
+                            Min temperature: <strong>{city.temperatureMin}</strong>
+                        </div>
+                        <div className="wether-text">
+                            Max temperature: <strong>{city.temperatureMax}</strong>
+                        </div>
+                        <div className="wether-text">
+                            Wind speed: <strong>{city.windSpeed}</strong>
+                        </div>
+                        <div className="wether-text">
+                            Avg humidity: <strong>{city.avgHumidity}</strong>%
+                        </div>
+                    </li>
+                }        
+            );
+            this.setState({ listItems: lis });
+    }
+
+    getCities = async ()=>{
+            let res = await fetch(`https://localhost:44344/api/cities`,{
+                method: 'GET',
+                credentials: 'same-origin',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                })
+                .then((response) => {
+                    return response.json();
+                });
+    
+                console.log(res);
+                let options = res.map((city) =>{
+                        return <option value={city.name}>{city.name}</option>
+                    }        
+                );
+                this.setState({ cities: options });
+                this.getWether();
+        
     }
 
     render(){
@@ -33,10 +107,7 @@ export class CityList extends Component{
                     <div>
                         <label htmlFor="cities">Add city to list</label>
                         <select className="city-list_select" name="cities" id="cities">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                            {this.state.cities}
                         </select>
                     </div>
                     <div className="carousel">
@@ -53,8 +124,10 @@ export class CityList extends Component{
                     <ButtonCustom  text="Delete" click={this.sendMes} type="primary"></ButtonCustom>
                 </div>
                 
-                <div className="adminChat-btn">
-                    
+                <div className="weather">
+                    <ul className="weather-list">
+                        {this.state.listItems}
+                    </ul>
                 </div>
             </div>
         )

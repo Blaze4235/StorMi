@@ -13,7 +13,8 @@ export class UserCabinet extends Component{
         this.state = {
             redirect: false,
             adminChat: false,
-            CityList: false
+            CityList: false,
+            region: false
         }
     }
 
@@ -33,8 +34,11 @@ export class UserCabinet extends Component{
     cityList = () => {
         this.setState({ CityList: true });
     }
+    regionInfo = () => {
+        this.setState({ region: true });
+    }
     render(){
-        const { redirect, adminChat, CityList } = this.state;
+        const { redirect, adminChat, CityList, region } = this.state;
         if (redirect) {
             return <Navigate to="/sign-in"/>;
         }
@@ -43,6 +47,9 @@ export class UserCabinet extends Component{
         }
         if (CityList) {
             return <Navigate to="/CityList"/>;
+        }
+        if (region) {
+            return <Navigate to="/region"/>;
         }
         return(
             <div className="ticket ticket--cabinet">
@@ -69,7 +76,7 @@ export class UserCabinet extends Component{
                 <div className="cabinet-info__btn-group">
                     <ButtonCustom text="City List" click={this.cityList} type="primary"></ButtonCustom>
                     <ButtonCustom text="Connect with Admin" click={this.startAdminChat} type="primary"></ButtonCustom>
-                    <ButtonCustom text="View info about region" type="primary"></ButtonCustom>
+                    <ButtonCustom text="View info about region" click={this.regionInfo} type="primary"></ButtonCustom>
                 </div>
             </div>
         )
