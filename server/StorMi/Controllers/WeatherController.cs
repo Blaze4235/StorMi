@@ -46,5 +46,23 @@ namespace StorMi.Controllers
             var res = await _weatherService.DayHourlyWeatherForecast(city);
             return Json(res);
         }
+
+        [HttpGet]
+        [Route("/weather/covid")]
+        public async Task<IActionResult> GetTodayCovidInfo()
+        {
+            var apiInvoker = new ApiInvoker();
+            var apiRequestStr = "https://api.covid19api.com/country/ukraine?from="
+                                + $"{DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")}&" +
+                                $"to={DateTime.Now.ToString("yyyy-MM-dd")}";
+            var result = await apiInvoker.Invoke(apiRequestStr);
+            var coronaVirusModel = new CoronaVirusModel();
+
+            coronaVirusModel.Active = Convert.ToInt32(result[0]["Active"]);
+            coronaVirusModel.Confirmed = Convert.ToInt32(result[0]["Confirmed"]);
+            coronaVirusModel.Deaths = Convert.ToInt32(result[0]["Deaths"]);
+
+            return Json(coronaVirusModel);
+        }
     }
 }
