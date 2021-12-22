@@ -99,7 +99,7 @@ namespace StorMi.Services
             {
                 if (dataHandler.IsActive)
                 {
-                    var weatherModel = (await dataHandler.Api.GetWeatherForecastHourlyForDayAsync(requestedDay, city)).ToList();
+                    var weatherModel = (await dataHandler.Api.GetWeatherForecastHourlyForDayAsync(DateTime.Today, city)).ToList();
 
                     for (int i = 0; i < hoursNumber; i++)
                     {
