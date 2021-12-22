@@ -1,4 +1,5 @@
 
+
 .btnAdmin{
     width: 180px;
     height: 60px;
@@ -10,10 +11,10 @@
     font-size: 15px;
 }
 
-.btnAdminBack2{
+.btnAdminBack1{
     width: 80px;
     height: 40px;
-    margin-left: 250px;
+    margin-left: 170px;
     border-width:thin;
     border-radius: 1ch;
     background-color: #007bff;
@@ -56,43 +57,3 @@
     color: #6c757d ;
 }
 
-.inputAdmin1{
-    margin-left:110px;
-    border: solid 1px;
-    border-color:black;
-    border-radius: 1ch;
-    margin-bottom:20px;
-    height:20px;
-}
-.inputAdmin2{
-    margin-left:35px;
-    border: solid 1px;
-    border-color:black;
-    border-radius: 1ch;
-    margin-bottom:20px;
-    height:20px;
-}
-.inputAdmin3{
-    margin-left:70px;
-    border: solid 1px;
-    border-color:black;
-    border-radius: 1ch;
-    margin-bottom:20px;
-    height:20px;
-}
-.inputAdmin4{
-    margin-left:75px;
-    border: solid 1px;
-    border-color:black;
-    border-radius: 1ch;
-    margin-bottom:20px;
-    height:20px;
-}
-.inputAdmin5{
-    margin-left:5px;
-    border: solid 1px;
-    border-color:black;
-    border-radius: 1ch;
-    margin-bottom:20px;
-    height:20px;
-}

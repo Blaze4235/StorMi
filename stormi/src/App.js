@@ -11,8 +11,10 @@ import {UserCabinet} from './components/user/UserCabinet';
 import {AdminChat} from './components/user/ConnectWithAdmin';
 import {CityList} from './components/user/CityList';
 
+import {ChooseWeatherSource} from'./components/admin/ChooseWeatherSource'
 import {AdminCabinet} from './components/admin/AdminCabinet';
 import { CreateAccAdmin } from './components/admin/CreateAccAdmin';
+import { DeleteUser } from './components/admin/DeleteUser';
 
 import { Navigate } from 'react-router-dom';
 
@@ -32,6 +34,8 @@ function App() {
         <Route path="/createAccAdmin" element={<CreateAccAdmin/>}/>
         <Route path="/connectWithAdmin" element={<AdminChat/>}/>
         <Route path="/CityList" element={<CityList/>}/>
+        <Route path="/weather" element = {<ChooseWeatherSource/>}/>
+        <Route path="/deleteUser" element = {<DeleteUser/>}/>
       </Routes>
     </div>
   );

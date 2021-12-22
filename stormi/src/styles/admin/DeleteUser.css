@@ -10,10 +10,10 @@
     font-size: 15px;
 }
 
-.btnAdminBack2{
+.btnAdminBack{
     width: 80px;
     height: 40px;
-    margin-left: 250px;
+    margin-left: 390px;
     border-width:thin;
     border-radius: 1ch;
     background-color: #007bff;
@@ -22,8 +22,8 @@
     font-size: 15px;
 }
 
-.btnCreateAcc{
-    width: 80px;
+.btnDeleteAcc{
+    width: 120px;
     height: 40px;
     border-width:thin;
     border-radius: 1ch;
@@ -56,40 +56,8 @@
     color: #6c757d ;
 }
 
-.inputAdmin1{
-    margin-left:110px;
-    border: solid 1px;
-    border-color:black;
-    border-radius: 1ch;
-    margin-bottom:20px;
-    height:20px;
-}
-.inputAdmin2{
-    margin-left:35px;
-    border: solid 1px;
-    border-color:black;
-    border-radius: 1ch;
-    margin-bottom:20px;
-    height:20px;
-}
-.inputAdmin3{
-    margin-left:70px;
-    border: solid 1px;
-    border-color:black;
-    border-radius: 1ch;
-    margin-bottom:20px;
-    height:20px;
-}
-.inputAdmin4{
-    margin-left:75px;
-    border: solid 1px;
-    border-color:black;
-    border-radius: 1ch;
-    margin-bottom:20px;
-    height:20px;
-}
-.inputAdmin5{
-    margin-left:5px;
+.inputAdmin{
+    margin-left:10px;
     border: solid 1px;
     border-color:black;
     border-radius: 1ch;
