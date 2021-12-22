@@ -21,6 +21,8 @@ export class CityList extends Component{
             cities: ""
         }
         this.listItems = "";
+    }
+    componentDidMount(){
         this.getCities();
     }
     //12345Qq_

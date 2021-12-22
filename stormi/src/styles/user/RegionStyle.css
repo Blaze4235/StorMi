@@ -1,0 +1,21 @@
+.region-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.region-list li {
+    font-size: 28px;
+}
+.region-back{
+    text-align: right;
+}
+.ticket--region{
+    width: 500px;
+}
+.ticket--region h1{
+    margin-top: 0;
+}
+.region-nums{
+    font-weight: 600;
+    color: rgb(214, 0, 0);
+}
