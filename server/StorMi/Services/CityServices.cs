@@ -25,9 +25,9 @@ namespace StorMi.Services
             return _db.Areas;
         }
 
-        public async Task<IEnumerable<Area>> GetUserAll(string email)
+        public async Task<IEnumerable<Area>> GetUserAll(string id)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByIdAsync(id);
             var userCities = _db.Areas
                 .Include(a => a.UserProfiles)
                 .Where(a => a.UserProfiles.Any(u => u.UserId == user.Id));
@@ -41,12 +41,16 @@ namespace StorMi.Services
 
         public Area GetByName(string name)
         {
-            return _db.Areas.First(a => a.Name == name);
+            return _db.Areas.FirstOrDefault(a => a.Name == name);
         }
 
         public async Task AddAsync(Area area)
         {
+            var user = area.UserProfiles.First().UserId;
+            var userProfile = _db.UserProfiles.First(up => up.UserId == user);
+            area.UserProfiles = new List<UserProfile>() { userProfile };
             await _db.Areas.AddAsync(area);
+
             await _db.SaveChangesAsync();
         }
 

@@ -41,18 +41,13 @@ namespace StorMi.Controllers
             {
                 Area area = new Area()
                 {
-                    Name = city.Name,
+                    Name = cityName,
                     Region = "None",
                     TimeZone = 0,
-                    UserProfiles = new List<UserProfile>()
-                    {
-                        new UserProfile()
-                        {
-                            UserId = userId,
-                        },
-                    }
+                    UserProfiles = new List<UserProfile>(),
                 };
-
+                
+                area.UserProfiles.Add(new UserProfile() {UserId = userId});
                 await _cityService.AddAsync(area);
             }
 

@@ -59,8 +59,13 @@ namespace StorMi
             services.AddScoped<IApiDataHandler, ApiDataHandler2>();
             services.AddScoped<IApiInvoker, ApiInvoker>();
             services.AddScoped<IGeoAPIHandler, GeoAPIHandler>();
+            services.AddScoped<IWeatherEvaluation, WeatherEvaluation>();
+            services.AddScoped<IWeatherService, WeatherService>();
+            services.AddScoped<ICityService, CityServices>();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(x => 
+                    x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StorMi", Version = "v1" });
