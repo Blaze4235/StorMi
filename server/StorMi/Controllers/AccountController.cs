@@ -152,16 +152,17 @@ namespace AuthApp.Controllers
         [Route("/logout")]
         public async Task<IActionResult> LogOut()
         {
-            var user = User.Identity;
+            //var user = User.Identity;
             await _signInManager.SignOutAsync();
             return Ok();
         }
 
         [HttpPost]
         [Route("/delete")]
-        public async Task<ActionResult> Delete()
+        public async Task<ActionResult> Delete(string userEmail)
         {
-            ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            //ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            ApplicationUser user = await _userManager.FindByEmailAsync(userEmail);
             if (user != null)
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);
@@ -177,7 +178,8 @@ namespace AuthApp.Controllers
         [Route("/edit")]
         public async Task<ActionResult> Edit([FromBody] EditUserModel model)
         {
-            ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            //ApplicationUser user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            ApplicationUser user = await _userManager.FindByIdAsync(model.UserId);
             if (user != null)
             {
                 user.Email = model.Email;

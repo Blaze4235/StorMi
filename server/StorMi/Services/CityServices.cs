@@ -46,11 +46,14 @@ namespace StorMi.Services
 
         public async Task AddAsync(Area area)
         {
-            var user = area.UserProfiles.First().UserId;
-            var userProfile = _db.UserProfiles.First(up => up.UserId == user);
-            area.UserProfiles = new List<UserProfile>() { userProfile };
-            await _db.Areas.AddAsync(area);
+            if (area.UserProfiles != null)
+            {
+                var user = area.UserProfiles.First().UserId;
+                var userProfile = _db.UserProfiles.First(up => up.UserId == user);
+                area.UserProfiles = new List<UserProfile>() { userProfile };
+            }
 
+            await _db.Areas.AddAsync(area);
             await _db.SaveChangesAsync();
         }
 

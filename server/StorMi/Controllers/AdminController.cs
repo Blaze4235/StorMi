@@ -18,13 +18,10 @@ namespace StorMi.Controllers
     [Route("/api")]
     public class AdminContoller : Controller
     {
-
-
         [HttpGet]
         [Route("/apis")]
         public async Task<IEnumerable<WeatherApiHandlerModel>> GetAll()
         {
-
             return Program.weatherApiAccessor.list;
         }
 
@@ -33,7 +30,6 @@ namespace StorMi.Controllers
         public async Task<IActionResult> ChangeApiSource(int id, bool value)
         {
             Program.weatherApiAccessor.list[id].IsActive = value;
-
             return Ok();
         }
     }
