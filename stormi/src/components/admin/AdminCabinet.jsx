@@ -12,7 +12,8 @@ export class AdminCabinet extends Component{
             create: false,
             logout: false,
             weather:false,
-            deleteuser:false
+            deleteuser:false,
+            updateinfo:false
         }
 
     }
@@ -28,8 +29,11 @@ export class AdminCabinet extends Component{
     deleteUser=()=>{
         this.setState({deleteuser: true });
     }
+    updateUserInfo=()=>{
+        this.setState({updateinfo: true });
+    }
     render(){
-        const {create, logout, weather, deleteuser} = this.state;
+        const {create, logout, weather, deleteuser, updateinfo} = this.state;
         if(create){
             return <Navigate to="/createAccAdmin"></Navigate>;
         }
@@ -39,6 +43,8 @@ export class AdminCabinet extends Component{
             return <Navigate to="/weather"></Navigate>;
         } else if(deleteuser){
             return <Navigate to="/deleteUser"></Navigate>;
+        } else if(updateinfo){
+            return <Navigate to="/updateUserInfo"></Navigate>;
         }
         return(
             <div className="ticket ticket--cabinet">
@@ -50,12 +56,12 @@ export class AdminCabinet extends Component{
                     <div className="cabinet-info__block">
                 </div>
                 <div className="cabinet-info__btn-group">
-                    <button className="btnAdmin">Update users account</button>
+                    <button className="btnAdmin" onClick={this.updateUserInfo}>Update users account</button>
                     <button className="btnAdmin" onClick={this.deleteUser}>Delete users account</button>
                     <button className="btnAdmin" onClick={this.createAcc}>Create account to user</button>
-                    <button className="btnAdmin">Check info about users accounts</button>
+                    {/* <button className="btnAdmin">Check info about users accounts</button>
                     <button className="btnAdmin">Recover password to user</button>
-                    <button className="btnAdmin">Check recent users</button>
+                    <button className="btnAdmin">Check recent users</button> */}
                     <button className="btnAdmin" onClick={this.chooseWather}>Choose weather source</button>
                 </div>
             </div>
