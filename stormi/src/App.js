@@ -10,6 +10,7 @@ import {SingUp} from './components/common/SingUp';
 import {UserCabinet} from './components/user/UserCabinet';
 import {AdminChat} from './components/user/ConnectWithAdmin';
 import {CityList} from './components/user/CityList';
+import {Region} from './components/user/Region';
 
 import {ChooseWeatherSource} from'./components/admin/ChooseWeatherSource'
 import {AdminCabinet} from './components/admin/AdminCabinet';
@@ -34,8 +35,12 @@ function App() {
         <Route path="/createAccAdmin" element={<CreateAccAdmin/>}/>
         <Route path="/connectWithAdmin" element={<AdminChat/>}/>
         <Route path="/CityList" element={<CityList/>}/>
+<<<<<<< HEAD
         <Route path="/weather" element = {<ChooseWeatherSource/>}/>
         <Route path="/deleteUser" element = {<DeleteUser/>}/>
+=======
+        <Route path="/region" element={<Region/>}/> 
+>>>>>>> cfb6add09d1d2733bdfaf5160860ab92b4cf9e46
       </Routes>
     </div>
   );
