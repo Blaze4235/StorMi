@@ -31,7 +31,7 @@ namespace StorMi.Services
             var userCities = _db.Areas
                 .Include(a => a.UserProfiles)
                 .Where(a => a.UserProfiles.Any(u => u.UserId == user.Id));
-            return userCities.ToList();
+            return userCities?.ToList();
         }
 
         public Area GetById(int id)
@@ -73,6 +73,16 @@ namespace StorMi.Services
         {
             var area = _db.Areas.First(a => a.Id == areaId);
             _db.Remove(area);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task DeleteByIdUserAsync(int areaId, string userId)
+        {
+            var area = _db.Areas
+                .Include(a => a.UserProfiles)
+                .First(a => a.Id == areaId);
+            area.UserProfiles.Remove(area.UserProfiles.First(u => u.UserId == userId));
+            _db.Update(area);
             await _db.SaveChangesAsync();
         }
     }

@@ -74,5 +74,69 @@ namespace StorMi.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        [Route("userCities")]
+        public async Task<IEnumerable<Area>> GetAllUserCities(string userId)
+        {
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var cities = await _cityService.GetUserAll(userId);
+            return cities;
+        }
+
+        [HttpPost]
+        [Route("newUser")]
+        public async Task<IActionResult> AddUserNewCity(string cityName, string userId)
+        {
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var city = _cityService.GetByName(cityName);
+            if (city == null)
+            {
+                Area area = new Area()
+                {
+                    Name = cityName,
+                    Region = "None",
+                    TimeZone = 0,
+                    UserProfiles = new List<UserProfile>()
+                    {
+                        new UserProfile()
+                        {
+                            UserId = userId,
+                        },
+                    },
+                };
+
+                //area.UserProfiles.Add(new UserProfile() {UserId = userId});
+                await _cityService.AddAsync(area);
+            }
+            else
+            {
+                city.UserProfiles.Add((await _userManager.FindByIdAsync(userId)).UserProfile);
+                await _cityService.EditAsync(city);
+            }
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("removeUser")]
+        public async Task<IActionResult> RemoveUserCity(string cityName, string userId)
+        {
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var city = _cityService.GetByName(cityName);
+
+            if (city != null)
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                await _cityService.DeleteByIdAsync(city.Id);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
     }
 }

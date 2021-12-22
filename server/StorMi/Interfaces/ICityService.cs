@@ -22,5 +22,7 @@ namespace StorMi.Interfaces
         public Task DeleteAsync(Area area);
 
         public Task DeleteByIdAsync(int areaId);
+
+        public Task DeleteByIdUserAsync(int areaId, string userId);
     }
 }
