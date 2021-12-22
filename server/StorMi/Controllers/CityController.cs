@@ -31,7 +31,7 @@ namespace StorMi.Controllers
         }
 
         [HttpPost]
-        [Route("")]
+        [Route("new")]
         public async Task<IActionResult> AddNewCity(string cityName)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -49,6 +49,25 @@ namespace StorMi.Controllers
                 
                 area.UserProfiles.Add(new UserProfile() {UserId = userId});
                 await _cityService.AddAsync(area);
+            }
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("remove")]
+        public async Task<IActionResult> RemoveCity(string cityName)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var city = _cityService.GetByName(cityName);
+
+            if (city != null)
+            {
+                await _cityService.DeleteByIdAsync(city.Id);
+            }
+            else
+            {
+                return NotFound();
             }
 
             return Ok();

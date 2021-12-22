@@ -11,6 +11,6 @@ namespace StorMi.Interfaces
 
         public Task<IEnumerable<WeatherModelDay>> WeekWeatherForecast(string city);
 
-        public Task<IEnumerable<WeatherModelHour>> DayHourlyWeatherForecast(DateTime requestedDay, string city);
+        public Task<IEnumerable<WeatherModelHour>> DayHourlyWeatherForecast(string city);
     }
 }

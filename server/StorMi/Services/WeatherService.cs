@@ -40,7 +40,6 @@ namespace StorMi.Services
             }
 
             var resultWeather = _weatherEvaluation.GetCalculatedWeatherModelDay(weatherModels);
-
             return resultWeather;
         }
 
@@ -91,8 +90,7 @@ namespace StorMi.Services
             return resultWeather;
         }
 
-        public async Task<IEnumerable<WeatherModelHour>> DayHourlyWeatherForecast(
-            DateTime requestedDay, string city)
+        public async Task<IEnumerable<WeatherModelHour>> DayHourlyWeatherForecast(string city)
         {
             var weatherModels = new List<WeatherModelHour>();
             int hoursNumber = 24;
