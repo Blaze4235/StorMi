@@ -10,11 +10,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using StorMi.DalModels;
 using StorMi.EF;
+using StorMi.Services;
 
 namespace StorMi
 {
     public class Program
     {
+        public static WeatherApiAccessor weatherApiAccessor = new WeatherApiAccessor();
         public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();

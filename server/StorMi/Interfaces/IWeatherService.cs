@@ -7,12 +7,6 @@ namespace StorMi.Interfaces
 {
     public interface IWeatherService
     {
-        public void AddWeatherDataSource(IApiDataHandler apiDataHandler, float coef);
-
-        public void RemoveWeatherDataSource(IApiDataHandler apiDataHandler, float coef);
-
-        public void SetDefault();
-
         public Task<WeatherModelDay> DayWeatherForecast(DateTime requestedDate, string city);
 
         public Task<IEnumerable<WeatherModelDay>> WeekWeatherForecast(string city);

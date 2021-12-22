@@ -14,8 +14,14 @@ namespace StorMi.Services
 
             foreach (var inputWeatherModel in weatherModels)
             {
-                calculatedWeatherModel.City = inputWeatherModel.City;
-                calculatedWeatherModel.Country = inputWeatherModel.Country;
+                if (inputWeatherModel.City != null)
+                {
+                    calculatedWeatherModel.City = inputWeatherModel.City;
+                }
+                if (inputWeatherModel.Country != null)
+                {
+                    calculatedWeatherModel.Country = inputWeatherModel.Country;
+                }
                 calculatedWeatherModel.AvgHumidity += inputWeatherModel.AvgHumidity;
                 calculatedWeatherModel.AvgTemp += inputWeatherModel.AvgTemp;
                 calculatedWeatherModel.ChanceOfRain += inputWeatherModel.ChanceOfRain;
@@ -23,7 +29,10 @@ namespace StorMi.Services
                 calculatedWeatherModel.TemperatureMax += inputWeatherModel.TemperatureMax;
                 calculatedWeatherModel.TemperatureMin += inputWeatherModel.TemperatureMin;
                 calculatedWeatherModel.WindSpeed += inputWeatherModel.WindSpeed;
-                calculatedWeatherModel.OverallCondition = inputWeatherModel.OverallCondition;
+                if (inputWeatherModel.OverallCondition != null)
+                {
+                    calculatedWeatherModel.OverallCondition = inputWeatherModel.OverallCondition;
+                }
             }
 
             calculatedWeatherModel.AvgHumidity /= length;
