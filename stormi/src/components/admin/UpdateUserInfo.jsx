@@ -16,25 +16,20 @@ export class UpdateUserInfo extends Component{
 
     update = ()=>{
         let data = {
-            'login': document.querySelector('#login').value,
-            'Password': document.querySelector('#Password').value,
-            'phoneNumber': document.querySelector('#PhoneNumber').value,
+            'userId': document.querySelector('#login').value,
+            'name': document.querySelector('#Uname').value,
             'Email': document.querySelector('#UserEmail').value,
         };
 
-        fetch('https://localhost:44344/register', {
+        fetch('https://localhost:44344/edit', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
-        //.then(response => response.json())
         .then(resp => {
-            console.log(resp);
-            if(resp.status === 200){
-                this.setState({ redirect: true });
-            }
+            this.setState({ back: true });
         });
     }
 
@@ -54,21 +49,16 @@ export class UpdateUserInfo extends Component{
                 </div>
                 <form className="createAccAdminForm">
                     <label>
-                        Login:
+                        User id:
                         <input type="email" id="login" className="updateUser1" />
                     </label>
-
                     <label>
-                        Password:
-                        <input type="password" id="Password" className="updateUser2"/>
-                    </label>
-                    <label>
-                        Phone number:
-                        <input type="text" id="PhoneNumber" className="updateUser3"/>
+                        Name:
+                        <input type="text" id="Uname" className="updateUser2" />
                     </label>
                     <label>
                         Email:
-                        <input type="text" id="UserEmail" className="updateUser4"/>
+                        <input type="text" id="UserEmail" className="updateUser3"/>
                     </label>
                 </form>
                 <button className="btnCreateAcc" onClick={this.update}>Update</button>

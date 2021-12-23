@@ -52,7 +52,7 @@ export class UserCabinet extends Component{
             return <Navigate to="/region"/>;
         }
         return(
-            <div className="ticket ticket--cabinet">
+            <div className="ticket ticket--cab">
                 
                 <div className="cabinet-info">
                     <div className="cabinet-info__block">

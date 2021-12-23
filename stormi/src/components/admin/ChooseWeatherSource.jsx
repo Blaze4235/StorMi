@@ -13,25 +13,26 @@ export class ChooseWeatherSource extends Component{
         }
     }
 
-    // weatherSource = ()=>{
-    //     let data = {
+    weatherSource = ()=>{
+        // let data = {
         
-    //     };
+        // };
 
-    //     fetch('https://localhost:44344/apis',{
-    //     method: 'GET',
-    //     credentials: 'same-origin',
-    //     headers: {
-    //     'Content-Type': 'application/json'
-    //     },
-    //     })
-    //     .then((response) => {
-    //         return response.json();
-    //     })
-    //     .then((data) => {
-    //         console.log(data);
-    //     });
-    //  }
+        // fetch('https://localhost:44344/apis',{
+        // method: 'GET',
+        // credentials: 'same-origin',
+        // headers: {
+        // 'Content-Type': 'application/json'
+        // },
+        // })
+        // .then((response) => {
+        //     return response.json();
+        // })
+        // .then((data) => {
+        //     console.log(data);
+        // });
+        this.goBack();
+     }
 
     goBack = () => {
         this.setState({back: true });

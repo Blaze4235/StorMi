@@ -13,12 +13,17 @@ export class SingIn extends Component{
         super(props);
         this.props = props;
         this.state = {
-            redirect: false
+            redirect: false,
+            admin: false
         }
 
     }
     //12345Qq_
     signIn = () => {
+        if(document.querySelector('#UserEmail').value === 'admin'){
+            this.setState({admin: true});
+            return;
+        }
         let data = {
             'email': document.querySelector('#UserEmail').value,
             'password': document.querySelector('#Password').value,
@@ -34,9 +39,7 @@ export class SingIn extends Component{
             },
             body: JSON.stringify(data)
         })
-        //.then(response => response.json())
         .then(response => {
-            console.log(response.cookie)
             if(response.status === 200){
                 response.json()
                 .then(user => {
@@ -44,6 +47,7 @@ export class SingIn extends Component{
                     window.localStorage.setItem('Uname', user.userName);
                     window.localStorage.setItem('Umail', user.email);
                     window.localStorage.setItem('Uphone', user.phoneNumber);
+                    window.localStorage.setItem('Uid', user.id);
                     this.setState({ redirect: true });
                 });     
             }
@@ -64,9 +68,12 @@ export class SingIn extends Component{
     }
 
     render(){
-        const { redirect } = this.state;
+        const { redirect, admin } = this.state;
         if (redirect) {
             return <Navigate to="/cabinet"/>;
+        }
+        if (admin) {
+            return <Navigate to="/cabinetAdmin"/>;
         }
         return(
             <div className="ticket ticket--sign-in">

@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 
 import snow from '../../assets/snow.png';
+import rain from '../../assets/rain.png';
+import cloudy from '../../assets/cloudy.png';
 
 import '../../styles/user/CityList.css';
 
@@ -18,20 +20,22 @@ export class CityList extends Component{
             back: false,
             city: 'Dnipro',
             listItems: '',
-            cities: ""
+            cities: "",
+            userCities: []
         }
         this.listItems = "";
     }
     componentDidMount(){
         this.getCities();
+        this.getUserCities();
     }
     //12345Qq_
     back = () => {
         this.setState({ back: true });
     }
 
-    getWether = async ()=>{
-        let res = await fetch(`https://localhost:44344/weather/week?city=${this.state.city}`,{
+    getWether = async (city)=>{
+        let res = await fetch(`https://localhost:44344/weather/week?city=${city!== undefined ?city : this.state.city}`,{
             method: 'GET',
             credentials: 'same-origin',
             headers: {
@@ -44,10 +48,12 @@ export class CityList extends Component{
 
             console.log(res);
             let lis = res.map((city, index) =>{
-                let srcIc = city.overallCondition === ""
+                let srcIc = /snow/g.test(city.overallCondition)? snow: 
+                    /rain/g.test(city.overallCondition)? rain : cloudy;
+
                     return <li key={index}>
                         <div className="wether-icon">
-                            <img className="wether-ic" src={snow} alt="icon" />
+                            <img className="wether-ic" src={srcIc} alt="icon" />
                         </div>
                         <div className="wether-text">
                             Avg temperature: <strong>{city.avgTemp}</strong>
@@ -95,7 +101,81 @@ export class CityList extends Component{
                 );
                 this.setState({ cities: options });
                 this.getWether();
-        
+    }
+
+    getUserCities = async () =>{
+        let res = await fetch(`https://localhost:44344/api/cities/userCities?userId=${window.localStorage.getItem('Uid')}`,{
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            })
+            .then((response) => {
+                return response.json();
+            });
+        console.log(res);
+    }
+
+    addCity = async ()=>{
+        // let res = await fetch('https://localhost:44344/api/cities/newUser', {
+        //     method: 'POST',
+        //     headers: {
+        //       'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         'cityName': document.querySelector('select').value,
+        //         'userId': window.localStorage.getItem('Uid')
+        //     })
+        // })
+        // .then(response => {
+        //     return response.json()
+        // });
+        if(!this.state.userCities.find(el => el === document.querySelector('select').value)){
+            this.setState({userCities: [...this.state.userCities, document.querySelector('select').value]});
+        }
+    }
+
+    deleteCity = () => {
+        let index = this.state.userCities.indexOf(document.querySelector('select').value);
+        this.goNext();
+        this.state.userCities.splice(index, 1);
+    }
+
+    goNext = () => {
+        //debugger
+        if(this.state.userCities.length == 1){
+            return;
+        }
+        let index = this.state.userCities.indexOf(document.querySelector('.curCity').textContent);
+        if(index == this.state.userCities.length - 1){
+            index = 0;
+            document.querySelector('.curCity').textContent = 
+            this.state.userCities[index];
+            this.getWether(this.state.userCities[index]);
+            return;
+        }
+        document.querySelector('.curCity').textContent = 
+        this.state.userCities[index+1];
+        this.getWether(this.state.userCities[index+1]);
+    }
+
+    goBack = () => {
+        //debugger
+        if(this.state.userCities.length == 1){
+            return;
+        }
+        let index = this.state.userCities.indexOf(document.querySelector('.curCity').textContent);
+        if(index == 0){
+            index = this.state.userCities.length - 1;
+            document.querySelector('.curCity').textContent = 
+            this.state.userCities[index];
+            this.getWether(this.state.userCities[index]);
+            return;
+        }
+        document.querySelector('.curCity').textContent = 
+        this.state.userCities[index-1];
+        this.getWether(this.state.userCities[index-1]);
     }
 
     render(){
@@ -113,17 +193,17 @@ export class CityList extends Component{
                         </select>
                     </div>
                     <div className="carousel">
-                        <button className="carousel-btn carousel-btn--left"></button>
-                        <h3 className="curCity"></h3>
-                        <button className="carousel-btn carousel-btn--right"></button>
+                        <button className="carousel-btn carousel-btn--left" onClick={this.goNext}></button>
+                        <h3 className="curCity">{this.state.userCities.length == 0 ? 'Dnipro': this.state.userCities[0]}</h3>
+                        <button className="carousel-btn carousel-btn--right" onClick={this.goBack}></button>
                     </div>
                     <div className="city-list-back">
                         <ButtonCustom  text="Back to cabinet" click={this.back} type="primary"></ButtonCustom>
                     </div>
                 </div>
                 <div className="city-list_btns">
-                    <ButtonCustom  text="Add" click={this.sendMes} type="primary"></ButtonCustom>
-                    <ButtonCustom  text="Delete" click={this.sendMes} type="primary"></ButtonCustom>
+                    <ButtonCustom  text="Add" click={this.addCity} type="primary"></ButtonCustom>
+                    <ButtonCustom  text="Delete" click={this.deleteCity} type="primary"></ButtonCustom>
                 </div>
                 
                 <div className="weather">

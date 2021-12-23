@@ -13,25 +13,22 @@ export class DeleteUser extends Component{
         }
     }
 
-    // weatherSource = ()=>{
-    //     let data = {
-        
-    //     };
+    delete = ()=>{
+        let data = {
+            userEmail: document.querySelector('#login').value
+        };
 
-    //     fetch('https://localhost:44344/apis',{
-    //     method: 'GET',
-    //     credentials: 'same-origin',
-    //     headers: {
-    //     'Content-Type': 'application/json'
-    //     },
-    //     })
-    //     .then((response) => {
-    //         return response.json();
-    //     })
-    //     .then((data) => {
-    //         console.log(data);
-    //     });
-    //  }
+        fetch('https://localhost:44344/delete', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(resp => {
+            this.setState({ back: true });
+        });
+     }
 
     goBack = () => {
         this.setState({back: true });
