@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:stor_mi/screens/RegistrationPage/reg_page.dart';
+import 'package:stor_mi/screens/WeatherPage/weather_page.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -137,7 +138,9 @@ class AuthPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     child: RaisedButton(
                       color: Colors.green,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WeatherPage()));
+                      },
                       child: Text(
                         'Login',
                         style: TextStyle(
