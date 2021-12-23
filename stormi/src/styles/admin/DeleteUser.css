@@ -1,0 +1,66 @@
+
+.btnAdmin{
+    width: 180px;
+    height: 60px;
+    margin: 10px;
+    border-radius: 2ch;
+    background-color: #007bff;
+    border-color:#007bff;
+    color:white;
+    font-size: 15px;
+}
+
+.btnAdminBack{
+    width: 80px;
+    height: 40px;
+    margin-left: 390px;
+    border-width:thin;
+    border-radius: 1ch;
+    background-color: #007bff;
+    border-color:#007bff;
+    color:white;
+    font-size: 15px;
+}
+
+.btnDeleteAcc{
+    width: 120px;
+    height: 40px;
+    border-width:thin;
+    border-radius: 1ch;
+    background-color: #007bff;
+    border-color:#007bff;
+    color:white;
+    font-size: 15px;
+    margin-top:30px;
+}
+
+.ticket--cabinet{
+    width: 80%;
+    max-width: 620px;
+}
+
+.createAccAdminForm{
+    margin-top:30px;
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
+    flex-direction:column;
+    flex-wrap: wrap;
+}
+
+.cabinet__log-out{
+    margin-top: 20px;
+}
+
+.cabinet-info__text{
+    color: #6c757d ;
+}
+
+.inputAdmin{
+    margin-left:10px;
+    border: solid 1px;
+    border-color:black;
+    border-radius: 1ch;
+    margin-bottom:20px;
+    height:20px;
+}

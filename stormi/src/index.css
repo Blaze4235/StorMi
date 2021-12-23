@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  background-image: url('./assets/backGround.jpg');
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas,
+    'Courier New', monospace;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgba(0, 101, 209, 0.7);
+}
+
+a:visited {
+  color: purple;
+}
+
+.ticket{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  border-radius: 13px;
+  background-color: #f8f9fa;
+}
+
+.ticket__form--sub{
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket__form--sub-end{
+  justify-content: flex-end;
+}

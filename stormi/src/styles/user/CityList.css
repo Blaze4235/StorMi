@@ -1,0 +1,63 @@
+.ticket--cityList{
+    width: 80%;
+}
+.city-list-back{
+    text-align: end;
+}
+
+.city-list-fields{
+    display: flex;
+    justify-content: space-between;
+}
+
+.city-list_select{
+    width: 100%;
+}
+
+.carousel{
+    display: flex;
+}
+
+.carousel-btn{
+    width: 75px;
+    height: 75px;
+    border: none;
+    background-color: transparent;
+}
+.carousel-btn:hover{
+    opacity: 0.5;
+}
+
+.carousel-btn--left{
+    background-image: url('../../assets/arrow.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.carousel-btn--right{
+    transform: rotate(180deg);
+    background-image: url('../../assets/arrow.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.city-list_btns{
+    display: flex;
+}
+
+.weather-list{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.city-list_btns{
+    margin-top: 15px;
+}
+.city-list_btns button{
+    margin-right: 15px;
+    width: 120px;
+    padding: 10px 0 10px;
+}

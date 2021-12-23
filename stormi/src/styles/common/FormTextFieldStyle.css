@@ -1,0 +1,29 @@
+.form-input-text {
+  padding: 20px 0 5px;
+  text-align: start;
+}
+
+.form-input-label {
+  padding: 10px 0 10px;
+}
+
+.form-input-label-inline {
+  display: inline;
+  margin-right: 10px;
+}
+
+.form-input-label-block {
+  display: block;
+  padding-top: 0;
+}
+
+.form-input {
+  padding: 10px 0 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 13px;
+  font-size: 14px;
+}
+
+.form-input:focus {
+  outline: 1px solid #007bff7c;
+}
