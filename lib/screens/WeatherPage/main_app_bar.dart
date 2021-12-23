@@ -5,6 +5,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:stor_mi/screens/ChooseCityPage/choose_city_page.dart';
+import 'package:stor_mi/screens/UserAccountPage/user_account_page.dart';
 
 
 String cityValue = "";
@@ -62,13 +63,13 @@ class _MainAppBarState extends State<MainAppBar> {
                               radius: 100,
                               onTap: () => {
                               Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ChooseCityPage())),
+                              builder: (context) => UserAccountPage())),
                               },
                               child: Container(
                                 width: 50,
                                 height: 50,
                                 child: Icon(
-                                  Icons.location_city,
+                                  Icons.person,
                                   size: 24,
                                   color: Colors.black,
                                 ),
