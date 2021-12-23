@@ -1,0 +1,90 @@
+
+.btnAdmin{
+    width: 180px;
+    height: 60px;
+    margin: 10px;
+    border-radius: 2ch;
+    background-color: #007bff;
+    border-color:#007bff;
+    color:white;
+    font-size: 15px;
+}
+
+.btnAdminBack3{
+    width: 80px;
+    height: 40px;
+    margin-left: 320px;
+    border-width:thin;
+    border-radius: 1ch;
+    background-color: #007bff;
+    border-color:#007bff;
+    color:white;
+    font-size: 15px;
+}
+
+.btnCreateAcc{
+    width: 80px;
+    height: 40px;
+    border-width:thin;
+    border-radius: 1ch;
+    background-color: #007bff;
+    border-color:#007bff;
+    color:white;
+    font-size: 15px;
+    margin-top:30px;
+}
+
+.ticket--cabinet{
+    width: 80%;
+    max-width: 620px;
+}
+
+.createAccAdminForm{
+    margin-top:30px;
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
+    flex-direction:column;
+    flex-wrap: wrap;
+}
+
+.cabinet__log-out{
+    margin-top: 20px;
+}
+
+.cabinet-info__text{
+    color: #6c757d ;
+}
+
+.updateUser1{
+    margin-left:58px;
+    border: solid 1px;
+    border-color:black;
+    border-radius: 1ch;
+    margin-bottom:20px;
+    height:20px;
+}
+.updateUser2{
+    margin-left:65px;
+    border: solid 1px;
+    border-color:black;
+    border-radius: 1ch;
+    margin-bottom:20px;
+    height:20px;
+}
+.updateUser3{
+    margin-left:69px;
+    border: solid 1px;
+    border-color:black;
+    border-radius: 1ch;
+    margin-bottom:20px;
+    height:20px;
+}
+.updateUser4{
+    margin-left:95px;
+    border: solid 1px;
+    border-color:black;
+    border-radius: 1ch;
+    margin-bottom:20px;
+    height:20px;
+}

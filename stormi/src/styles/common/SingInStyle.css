@@ -1,0 +1,30 @@
+.logo-name {
+  margin-top: 0;
+  font-size: 4em;
+}
+
+.logo-name--s {
+  color: #007bff;
+}
+
+.logo-name--e {
+  color: #ffc107;
+}
+
+.ticket--sign-in {
+  width: 40%;
+  max-width: 420px;
+  margin: auto;
+}
+
+.signIn-sub{
+    margin: 20px 0 40px;
+}
+
+.signIn-sub--end{
+    margin: 20px 0 0;
+}
+
+.signIn-sub-spanP{
+    padding-right: 20px;
+}
